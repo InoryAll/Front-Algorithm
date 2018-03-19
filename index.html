@@ -11,7 +11,7 @@
         username: 'trj',
         password: '123456',
       };
-      var result = sortQuickly(array);
+      var result = quickSort(array);
       var index = search(14,result,0,array.length);
       var newObj = clone(obj);
       var deepObj = deepClone(obj);
@@ -24,32 +24,63 @@
       // 前端比较重要的算法
 
       // 快速排序
+//      function quickSort(array) {
+//        function sort(prev,size) {
+//          var i = prev;
+//          var j = size;
+//          var flag = array[prev];
+//          if (size-prev>1) {
+//            while(i<j){
+//              for(;j>i;j--){
+//                if (array[j] < flag) {
+//                    array[i++] = array[j];
+//                    break;
+//                }
+//              }
+//              for(;i<j;i++){
+//                if (array[i] > flag) {
+//                  array[j--] = array[i];
+//                  break;
+//                }
+//              }
+//            }
+//            array[i] = flag;
+//            sort(0,i);
+//            sort(i+1,size)
+//          }
+//        }
+//        sort(0,array.length);
+//        return array;
+//      }
+      
       function quickSort(array) {
         function sort(prev,size) {
           var i = prev;
           var j = size;
-          var flag = array[prev];
-          if (size-prev>1) {
-            while(i<j){
-              for(;j>i;j--){
+          var flag = array[i];
+          if(j-i>1) {
+            while (i<j) {
+              for (;j>i;j--) {
                 if (array[j] < flag) {
-                    array[i++] = array[j];
-                    break;
+                  array[i] = array[j];
+                  i++;
+                  break;
                 }
               }
-              for(;i<j;i++){
+              for (;i<j;i++) {
                 if (array[i] > flag) {
-                  array[j--] = array[i];
+                  array[j] = array[i];
+                  j--;
                   break;
                 }
               }
             }
             array[i] = flag;
             sort(0,i);
-            sort(i+1,size)
+            sort(i+1,size);
           }
         }
-        sort(0,array.length);
+        sort(0, array.length);
         return array;
       }
 
